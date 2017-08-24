@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>地址选择页面</title>
+    <link rel="stylesheet" href="address.css">
+</head>
+<body>
+    <div id="address-container" class="address-container">
+        <div class="address-header">
+            <div class="check-step">
+                <ul>
+                    <li class="check-step-ready">
+                          <span>地址确认</span>
+                    </li>
+                    <li>
+                        <span>查看订单</span>
+                    </li>
+                    <li>
+                        <span>支付</span>
+                    </li>
+                    <li>
+                        <span>确认订单</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="part-title">
+                <span>配送地址</span>
+            </div>
+        </div>
+        <div class="address-list">
+            <ul>
+                <li class="address-list-item" v-for="(address,index) in limitedAddressList" v-bind:class="{selectedItem: index==selectedIndex}" @click="selectedIndex=index">
+                    <p class="address-list-item-host">{{address.userName}}</p>
+                    <p class="address-list-item-address">{{address.streetName}}</p>
+                    <p class="address-list-item-phone">{{address.tel}}</p>
+                    <span class="address-list-item-default-address-type" @click="defaultIndex=index;">{{index==defaultIndex?"默认地址":"设为默认"}}</span>
+                </li>
+                <li class="address-list-item address-list-item-add">
+                    <span>添加地址</span>
+                </li>
+            </ul>
+            <div class="more-address-btn-wrapper">
+                <a href="javascript:void(0);" class="more-address-btn"  v-on:click="expandAddress">{{expandAddressFlag?"折叠地址":"更多地址"}}</a>
+            </div>
+        </div>
+        <div class="delivery-method">
+            <div class="part-title">
+                <span>配送方式</span>
+            </div>
+            <div class="delivery-method-choose">
+                <div class="delivery-method-choose-module" v-bind:class="{selectedItem:shippingMethodIndex==0}" @click="shippingMethodIndex=0">
+                    <p>标准配送</p>
+                    <p>Free</p>
+                </div>
+                <div class="delivery-method-choose-module" v-bind:class="{selectedItem:shippingMethodIndex==1}" @click="shippingMethodIndex=1">
+                    <p>高级配送</p>
+                    <p>180</p>
+                </div>
+            </div>
+        </div>
+        <div class="next-step">
+            <a href="javascript:void(0);" class="next-step-btn">下一步</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="address.js"></script>
+</body>
+</html>

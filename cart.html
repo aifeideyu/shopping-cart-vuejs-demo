@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>购物车</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="cart.css" rel="stylesheet">
+</head>
+<body>
+    <div class="cart-container">
+		<div id="cart" class="cart">
+			<div class="cart-title">
+				<span>购物车</span>
+			</div>
+			<div class="cart-items-list-wrapper">
+				<div class="cart-items">
+					<div class="cart-items-header">
+						<ul>
+							<li>商品信息</li>
+							<li>商品金额</li>
+							<li>商品数量</li>
+							<li>总金额</li>
+							<li>编辑</li>
+						</ul>
+					</div>
+					<div class="cart-items-list">
+						<ul v-for="product in productList">
+							<li class="cart-items-goods-info">
+								<div class="cart-item-checked">
+									<a href="javascript:void(0)" class="cart-item-checked-btn" v-bind:class="{'cart-item-checked-btn-selected':product.checkedFlag}" @click="setChecked(product)"></a>
+								</div>
+								<div class="cart-item-pic">
+									<img v-bind:src="product.productImage" class="cart-item-image"/>
+								</div>
+								<div class="cart-item-description">
+									<div class="cart-item-title">
+										<p>{{product.productName}}</p>
+									</div>
+									<div class="cart-item-include">
+										<dl>
+                                            <dt>赠送:</dt>
+                                            <dd>
+                                                <ul>
+                                                    <li v-for="part in product.parts">{{part.partsName}}</li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+									</div>
+								</div>
+							</li>
+							<li class="cart-items-unit-price">
+								<p>{{product.productPrice | formatMoney}}</p>
+							</li>
+
+							<li class="cart-items-quantity">
+								<div class="cart-items-quantity-ctrl">
+									<a href="javascript:void(0);" v-on:click="changeGoodsQuantity(product,-1)">-</a>
+									<input type="text" v-model="product.productQuantity" disabled size="3" class="product-quantity"></input>
+									<a href="javascript:void(0);" v-on:click="changeGoodsQuantity(product,1)">+</a>
+								</div>
+							</li>
+							<li class="cart-item-sub-price">
+								<p>{{product.productPrice*product.productQuantity | formatMoney}}</p>
+							</li>
+							<li class="cart-items-del">
+								<a href="javascript:void(0);" @click="deleteProduct(product)">删除</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="cart-foot">
+				<a href="javascript:void(0)" class="cart-item-checked-btn" :class="{'cart-item-checked-btn-selected':checkedAllFlag}" @click="setCheckedAll"></a>
+				<a href="javascript:void(0)" class="cart-items-check-all-btn" @click="setCheckedAll">{{checkedAllFlag?"全不选":"全选"}}</a>
+				<div class="cart-items-pay">
+					<span>总金额：{{totalPrice | formatMoney}}</span>
+					<a href="./address.html" class="cart-items-pay-btn">付款</a>
+				</div>
+			</div>
+
+            <div class="cart-modal-dialog" v-bind:class="{'cart-modal-dialog-show':deleteFlag}">
+				<div class="cart-modal-dialog-caption">
+					<span>提示框</span>
+				</div>
+				<div class="cart-modal-dialog-content">
+					<span>确定要删除该商品吗？</span>
+					<div class="cart-modal-dialog-content-btn-group">
+						<a href="javascript:void(0);" class="cart-modal-dialog-content-btn delete-ok-btn" @click="confirmDel">确定</a>
+						<a href="javascript:void(0);" class="cart-modal-dialog-content-btn delete-cancel-btn" @click="cancelDel">取消</a>
+					</div>
+				</div>
+            </div>
+		</div>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="cart.js"></script>
+</body>
+</html>

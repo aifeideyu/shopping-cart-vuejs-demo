@@ -1,0 +1,299 @@
+body{
+	margin:0;
+	color: #333;
+	font-family: "akkurat", sans-serif;
+}
+
+p{
+	margin: 0;
+}
+
+.cart-container{
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.cart{
+	padding:69px 0 54px 0;
+}
+
+.cart a{
+	text-decoration: none;
+	display: inline-block;
+	color: #333;
+}
+
+.cart a:hover{
+     color: #EE7A23;
+}
+
+.cart-title{
+	position: relative;
+	text-align: center;
+	margin-bottom: 41px;
+}
+
+.cart-title::before{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	content: "";
+	height: 1px;
+	width: 100%;
+	background: #ccc;
+	z-index: 0;
+}
+
+.cart-title span{
+	position: relative; /*这里要写。默认为static，z-index不起作用*/
+	padding: 0 1em;
+	font-family: "moderat", sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	color: #605F5F;
+	background: #fff;
+	z-index: 1;
+}
+
+.cart-items{
+	display: table;
+	width: 100%; /* 作为表格显示，记得设置宽度，否则宽度为0 */
+}
+
+.cart-items-header{
+	display: table-header-group; /* 相当于thead */
+	background: #605F5F;
+}
+
+.cart-items-list{
+	display: table-row-group; /* 相当于tbody */
+	position: relative;
+}
+
+.cart-items ul{
+	display: table-row;
+}
+
+.cart-items li{
+	display: table-cell;
+}
+
+.cart-items-header li{
+	text-align: center;
+	height: 3rem;
+	line-height: 3rem;
+	color: #fff;
+	border: 1px solid #BEBEBE;
+	box-sizing: border-box;
+}
+
+.cart-items-list > ul > li{
+     padding: 2rem 0;
+     text-align: center;
+     vertical-align: top;
+}
+
+.cart-items-goods-info{
+	text-align: left !important;
+}
+
+.cart-item-checked{
+	display: inline-block;
+	padding:2rem 0 2rem 1.5rem;
+	vertical-align: top;
+}
+
+.cart-item-checked-btn{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 50%; /* 圆形边框 */
+	vertical-align: middle;
+}
+
+.cart-item-checked-btn-selected{
+    background: #EE7A23;
+}
+
+.cart-item-pic{
+	display: inline-block;
+	width: 80px;
+	height: 72px;
+	vertical-align: top; /* 解决行内块级元素水平方向位置不一致的问题 */
+	margin-left: 1rem;
+}
+
+.cart-item-image{
+	width: 100%;
+	height: 100%;
+}
+
+.cart-item-description{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0.9rem;
+	padding-left: 2rem;
+}
+
+.cart-item-title p{
+	margin:0 0 1rem 0;
+}
+
+.cart-item-include dt,dd{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.cart-item-include dd{
+	margin-left: 0;
+}
+
+.cart-item-include dd ul{
+	display: block;
+	padding-left: 1rem;
+}
+
+.cart-item-include dd li{
+	display: block;
+	margin-bottom: 0.3rem;
+	color: #999;
+}
+
+.cart-items-quantity-ctrl a{
+	width: 1rem;
+	height: 1rem;
+	line-height: 1rem;
+	font-size: 1.3rem;
+}
+
+.product-quantity{
+    text-align: center;
+    margin-bottom: 0.3rem;
+}
+
+.cart-foot{
+	padding: 1rem 0;
+	height: 5rem;
+	line-height: 5rem;
+}
+
+.cart-foot > .cart-item-checked-btn{
+	margin-left: 1.5rem;
+}
+
+.cart-items-check-all-btn{
+     margin-left: 1rem;
+     display: inline !important;
+ }
+
+.cart-items-pay{
+	float: right;
+}
+
+.cart-items-pay-btn{
+	width: 10rem;
+	height: 3rem;
+	line-height: 3rem;
+	background: #EE7A23;
+	color: #fff !important;
+	text-align: center;
+	margin-left: 5rem;
+}
+
+.cart-items-pay-btn:hover{
+	background: #d1434a;
+	transition: 0.5s background;
+}
+
+.cart-modal-dialog{
+    position: fixed;
+    width: 35%;
+    height:300px;
+    border:1px solid #ff0031;
+    background: #ffffff;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,0%);
+    visibility: hidden;
+    z-index: 100;
+}
+
+.cart-modal-dialog-show{
+    visibility: visible;  /*如果是从display:none变为display:block的话，那么transition无效*/
+    transform: translate(-50%,-50%);
+    transition: 0.5s;
+}
+
+.cart-modal-dialog-caption{
+    height: 50px;
+    line-height: 50px;
+    background: rgba(240,240,240,0.9);
+    padding:0 1rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.cart-modal-dialog-content{
+    width:100%;
+    height:100%;
+    padding-top: 50px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+
+.cart-modal-dialog-content span{
+    margin-top: 2rem;
+    display: inline-block;
+}
+
+.cart-modal-dialog-content-btn-group{
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.cart-modal-dialog-content-btn{
+    display: inline-block;
+    padding:1rem 2rem;
+    border:1px solid #d1434a;
+}
+
+.cart-modal-dialog-content-btn:first-child{
+    margin-right: 1rem;
+}
+
+.delete-cancel-btn{
+    background: #d1434a;
+    color: #ffffff !important;
+}
+
+.delete-ok-btn{
+    background: #ffffff;
+    color: #d1434a !important;
+}
+
+@media screen and (max-width: 650px) {
+    body{
+    	font-size: 12px;
+    }
+
+    .cart-items-quantity-ctrl a{
+        display: block;
+        margin: 0 auto 0.5rem auto;
+    }
+    
+    .cart-modal-dialog-content-btn:first-child{
+        margin-right: 0;
+        margin-bottom: 0.3rem;
+    }
+}
